@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eCommerce Development – Clickora Web Solution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--red:#e8001e;--red2:#ff1a35;--accent-grad:linear-gradient(135deg,#e8001e 0%,#ff4d4d 100%);--text-grad:linear-gradient(135deg,#ff6b6b 0%,#ff1a35 50%,#ff8c8c 100%);--deep:#080608;--white:#fff;--muted:rgba(255,255,255,0.5);--border:rgba(255,255,255,0.08);--card:rgba(255,255,255,0.03);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--white);overflow-x:hidden;}
+
+/* BG */
+.page-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 20% 20%,rgba(232,0,30,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(140,0,10,0.12) 0%,transparent 50%),#080608;}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(232,0,30,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,30,0.04) 1px,transparent 1px);background-size:80px 80px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,6,8,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(232,0,30,0.15);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo-nav{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
+.nav-back:hover{color:var(--white);}
+.nav-cta{background:var(--accent-grad);color:#fff;border:none;padding:.55rem 1.4rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+
+/* HERO */
+.svc-hero{min-height:72vh;padding:120px 5vw 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;background:linear-gradient(135deg,rgba(8,6,8,0.85) 0%,rgba(20,4,4,0.8) 100%),url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1800&q=80') center/cover no-repeat;}
+.svc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(232,0,30,0.2) 0%,transparent 65%);}
+.svc-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);border-radius:3px;padding:.4rem 1.1rem;font-size:.72rem;font-weight:700;color:rgba(255,120,120,.9);margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:.1em;}
+.svc-tag .dot{width:6px;height:6px;background:var(--red2);border-radius:50%;animation:pulse 1.5s infinite;box-shadow:0 0 8px var(--red2);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.svc-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em;}
+.svc-hero h1 span{background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.svc-hero p{font-size:1.05rem;color:var(--muted);line-height:1.78;max-width:480px;margin-bottom:2rem;}
+.btn-primary{background:var(--accent-grad);color:#fff;border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 6px 28px rgba(232,0,30,.4);transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,0,30,.55);}
+
+/* HERO VISUAL */
+.hero-visual-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
+.store-mockup{background:rgba(18,8,8,0.92);border:1px solid rgba(232,0,30,0.2);border-radius:12px;padding:20px;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(232,0,30,.1);animation:float-up 6s ease-in-out infinite;max-width:340px;width:100%;}
+@keyframes float-up{0%,100%{transform:translateY(0) rotateY(-8deg)}50%{transform:translateY(-12px) rotateY(-8deg)}}
+.store-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.store-logo-text{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.store-cart{background:rgba(232,0,30,.15);border:1px solid rgba(232,0,30,.3);border-radius:6px;padding:6px 12px;font-size:.72rem;color:#fff;}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.product-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px;text-align:center;}
+.prod-img{height:44px;border-radius:5px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.prod-name{font-size:.62rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:3px;}
+.prod-price{font-size:.7rem;font-weight:800;color:var(--red2);}
+.store-btn-buy{width:100%;background:var(--accent-grad);color:#fff;border:none;border-radius:6px;padding:8px;font-size:.75rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.06em;}
+.badge-secure{position:absolute;bottom:-16px;left:-20px;background:rgba(12,4,4,.95);border:1px solid rgba(0,230,118,.3);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.badge-secure .gi{color:#00e676;}
+
+/* CONTENT SECTIONS */
+section{padding:80px 5vw;position:relative;}
+.section-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.35rem 1rem;border-radius:3px;margin-bottom:1.2rem;color:rgba(255,100,100,.95);}
+.section-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red2);box-shadow:0 0 6px var(--red2);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.12;margin-bottom:1rem;color:var(--white);}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.78;max-width:560px;}
+
+/* FEATURES GRID */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.feat-card:hover::before{transform:scaleX(1);}
+.feat-card:hover{transform:translateY(-5px);border-color:rgba(232,0,30,.35);box-shadow:0 20px 50px rgba(232,0,30,.12);}
+.feat-icon{font-size:2rem;margin-bottom:1rem;}
+.feat-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.feat-desc{font-size:.86rem;color:var(--muted);line-height:1.7;}
+
+/* PROCESS */
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:3rem;position:relative;}
+.process-steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.4),transparent);pointer-events:none;}
+.step{text-align:center;padding:0 1rem;}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin:0 auto 1rem;box-shadow:0 0 30px rgba(232,0,30,.4);}
+.step-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+
+/* PRICING HIGHLIGHT */
+.price-highlight{background:linear-gradient(135deg,rgba(232,0,30,0.08),rgba(232,0,30,0.03));border:1px solid rgba(232,0,30,.25);border-radius:16px;padding:3rem;text-align:center;margin-top:3rem;}
+.price-highlight h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+.price-big{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:.5rem 0;}
+.price-note{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem;}
+.features-list{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-bottom:2rem;}
+.fl-item{background:rgba(232,0,30,.08);border:1px solid rgba(232,0,30,.2);border-radius:20px;padding:.3rem 1rem;font-size:.78rem;color:rgba(255,150,150,.9);font-weight:600;}
+
+/* CTA STRIP */
+.cta-strip{background:var(--accent-grad);border-radius:16px;padding:3rem 2rem;text-align:center;margin:0 5vw 80px;box-shadow:0 20px 60px rgba(232,0,30,.35);}
+.cta-strip h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.8rem;}
+.cta-strip p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:1.8rem;}
+.btn-white{background:#fff;color:var(--red);border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:transform .2s,box-shadow .2s;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.3);}
+
+/* FOOTER */
+.svc-footer{background:#050305;border-top:1px solid rgba(232,0,30,.1);padding:30px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.svc-footer span{font-size:.82rem;color:rgba(255,255,255,.3);}
+.svc-footer a{color:rgba(255,120,120,.7);text-decoration:none;font-size:.82rem;}
+.svc-footer a:hover{color:#fff;}
+
+/* FADE IN */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+.glow-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.5),rgba(255,80,80,.4),transparent);}
+
+@media(max-width:768px){
+  .svc-hero{grid-template-columns:1fr;padding:120px 5vw 60px;}
+  .hero-visual-wrap{display:none;}
+  .process-steps::before{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="page-bg"><div class="grid-lines"></div></div>
+
+<nav>
+  <a href="index.html" class="logo-nav">Clickora</a>
+  <a href="index.html#services" class="nav-back">← Back to Services</a>
+  <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<div class="svc-hero">
+  <div style="position:relative;z-index:2;">
+    <div class="svc-tag"><span class="dot"></span> Our Service</div>
+    <h1>eCommerce<br><span>Store Development</span></h1>
+    <p>We build secure, high-converting online stores that turn browsers into buyers. From product catalogs to payment gateways — we handle it all so you can focus on selling.</p>
+    <a href="index.html#contact" class="btn-primary">Start Your Store →</a>
+  </div>
+  <div class="hero-visual-wrap" style="position:relative;z-index:2;">
+    <div class="store-mockup">
+      <div class="store-header">
+        <div class="store-logo-text">🛒 MyShop</div>
+        <div class="store-cart">🛒 Cart (2)</div>
+      </div>
+      <div class="product-grid">
+        <div class="product-item"><div class="prod-img" style="background:rgba(232,0,30,.1);">👗</div><div class="prod-name">Designer Top</div><div class="prod-price">₹1,299</div></div>
+        <div class="product-item"><div class="prod-img" style="background:rgba(100,0,200,.1);">👟</div><div class="prod-name">Sneakers</div><div class="prod-price">₹2,499</div></div>
+        <div class="product-item"><div class="prod-img" style="background:rgba(0,150,100,.1);">🎒</div><div class="prod-name">Backpack</div><div class="prod-price">₹899</div></div>
+        <div class="product-item"><div class="prod-img" style="background:rgba(200,150,0,.1);">⌚</div><div class="prod-name">Watch</div><div class="prod-price">₹3,999</div></div>
+      </div>
+      <button class="store-btn-buy">Add to Cart — Buy Now</button>
+    </div>
+    <div class="badge-secure"><span class="gi">🔐</span> SSL Secured Checkout</div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- WHAT'S INCLUDED -->
+<section>
+  <div class="fade-up">
+    <span class="section-tag">What's Included</span>
+    <h2 class="section-title">Everything Your Online Store Needs</h2>
+    <p class="section-sub">A complete end-to-end eCommerce solution built for growth, security, and ease of management.</p>
+  </div>
+  <div class="features-grid fade-up">
+    <div class="feat-card"><div class="feat-icon">🛍️</div><div class="feat-title">Product Catalog Management</div><div class="feat-desc">Unlimited product listings with variants, images, categories, and filters — managed easily from your admin panel.</div></div>
+    <div class="feat-card"><div class="feat-icon">💳</div><div class="feat-title">Secure Payment Gateway</div><div class="feat-desc">Integrated with Razorpay, PayU, Stripe, and UPI. Customers can pay by card, net banking, or wallet.</div></div>
+    <div class="feat-card"><div class="feat-icon">📦</div><div class="feat-title">Order & Inventory Tracking</div><div class="feat-desc">Real-time order management, low-stock alerts, and shipping status updates all in one dashboard.</div></div>
+    <div class="feat-card"><div class="feat-icon">📱</div><div class="feat-title">Mobile-First Design</div><div class="feat-desc">Fully responsive store optimized for mobile shoppers — where 70%+ of purchases happen today.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔒</div><div class="feat-title">SSL & Security</div><div class="feat-desc">End-to-end encryption, secure login, and data protection so your customers shop with confidence.</div></div>
+    <div class="feat-card"><div class="feat-icon">🚀</div><div class="feat-title">Speed Optimized</div><div class="feat-desc">Fast-loading pages reduce bounce rate and boost conversions. We optimize every image and script.</div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Analytics Dashboard</div><div class="feat-desc">Track sales, revenue, top products, and customer behavior with integrated Google Analytics.</div></div>
+    <div class="feat-card"><div class="feat-icon">🎯</div><div class="feat-title">Coupon & Discount Engine</div><div class="feat-desc">Create promo codes, seasonal offers, and flash sales to drive more conversions.</div></div>
+    <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title">Multi-Language & GST Ready</div><div class="feat-desc">Support for Indian GST invoicing, multi-currency display, and regional language options.</div></div>
+  </div>
+</section>
+<div class="glow-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section style="background:rgba(255,255,255,.015);">
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">Our Process</span>
+    <h2 class="section-title">How We Build Your Store</h2>
+  </div>
+  <div class="process-steps fade-up">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Discovery Call</div><div class="step-desc">We understand your products, target audience, and business goals.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Design Mockup</div><div class="step-desc">We design your store UI — pay only after design approval.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Development</div><div class="step-desc">We build the full store with all features, integrations & payment setup.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Testing</div><div class="step-desc">We test every checkout flow, device, and edge case before launch.</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-title">Go Live!</div><div class="step-desc">Your store launches. We hand over the admin panel with training.</div></div>
+  </div>
+</section>
+<div class="glow-divider"></div>
+
+<!-- PRICING -->
+<section>
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">Pricing</span>
+    <h2 class="section-title">eCommerce Store Packages</h2>
+  </div>
+  <div class="price-highlight fade-up">
+    <h3>eCommerce Store</h3>
+    <div class="price-big">₹40,000+</div>
+    <div class="price-note">One-time · Annual renewal ₹6,000 · Pay 50% upfront, 50% after design approval</div>
+    <div class="features-list">
+      <span class="fl-item">Unlimited Products</span>
+      <span class="fl-item">Razorpay / UPI Integration</span>
+      <span class="fl-item">Admin Dashboard</span>
+      <span class="fl-item">Order Management</span>
+      <span class="fl-item">Mobile Responsive</span>
+      <span class="fl-item">SSL Certificate</span>
+      <span class="fl-item">GST Invoicing</span>
+      <span class="fl-item">1 Year Support</span>
+      <span class="fl-item">Custom Domain</span>
+      <span class="fl-item">Speed Optimized</span>
+    </div>
+    <a href="index.html#contact" class="btn-primary">Get a Free Quote →</a>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip fade-up">
+  <h2>Ready to Sell Online?</h2>
+  <p>Let's build your eCommerce store. Free consultation — no commitment needed.</p>
+  <a href="index.html#contact" class="btn-white">Talk to Us →</a>
+</div>
+
+<div class="svc-footer">
+  <span>© 2025 Clickora Web Solution · Chennai</span>
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

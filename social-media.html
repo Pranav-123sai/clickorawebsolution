@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Marketing – Clickora Web Solution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e8001e;--red2:#ff1a35;--accent-grad:linear-gradient(135deg,#e8001e 0%,#ff4d4d 100%);--text-grad:linear-gradient(135deg,#ff6b6b 0%,#ff1a35 50%,#ff8c8c 100%);--deep:#080608;--white:#fff;--muted:rgba(255,255,255,0.5);--border:rgba(255,255,255,0.08);--card:rgba(255,255,255,0.03);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--white);overflow-x:hidden;}
+.page-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 20% 20%,rgba(232,0,30,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(140,0,10,0.12) 0%,transparent 50%),#080608;}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(232,0,30,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,30,0.04) 1px,transparent 1px);background-size:80px 80px;}
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,6,8,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(232,0,30,0.15);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo-nav{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
+.nav-back:hover{color:var(--white);}
+.nav-cta{background:var(--accent-grad);color:#fff;border:none;padding:.55rem 1.4rem;border-radius:4px;font-size:.85rem;font-weight:700;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+.svc-hero{min-height:72vh;padding:120px 5vw 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;background:linear-gradient(135deg,rgba(8,6,8,0.88) 0%,rgba(20,4,4,0.82) 100%),url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1800&q=80') center/cover no-repeat;}
+.svc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(232,0,30,0.18) 0%,transparent 65%);}
+.svc-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);border-radius:3px;padding:.4rem 1.1rem;font-size:.72rem;font-weight:700;color:rgba(255,120,120,.9);margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:.1em;}
+.svc-tag .dot{width:6px;height:6px;background:var(--red2);border-radius:50%;animation:pulse 1.5s infinite;box-shadow:0 0 8px var(--red2);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.svc-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em;}
+.svc-hero h1 span{background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.svc-hero p{font-size:1.05rem;color:var(--muted);line-height:1.78;max-width:480px;margin-bottom:2rem;}
+.btn-primary{background:var(--accent-grad);color:#fff;border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:700;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 6px 28px rgba(232,0,30,.4);transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,0,30,.55);}
+
+/* SOCIAL MOCKUP */
+.social-mockup{background:rgba(15,5,5,.95);border:1px solid rgba(232,0,30,.2);border-radius:14px;padding:16px;box-shadow:0 40px 80px rgba(0,0,0,.7);animation:float 6s ease-in-out infinite;max-width:340px;width:100%;}
+@keyframes float{0%,100%{transform:translateY(0) rotateY(-6deg)}50%{transform:translateY(-12px) rotateY(-6deg)}}
+.platform-tabs{display:flex;gap:6px;margin-bottom:12px;}
+.p-tab{flex:1;text-align:center;padding:7px;border-radius:8px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;}
+.p-tab.insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;}
+.p-tab.fb{background:#1877f2;color:#fff;}
+.p-tab.li{background:#0077b5;color:#fff;}
+.post-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;margin-bottom:8px;}
+.post-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.post-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#fff;}
+.post-name{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.8);}
+.post-time{font-size:.58rem;color:rgba(255,255,255,.3);}
+.post-img{height:72px;background:linear-gradient(135deg,rgba(232,0,30,.15),rgba(100,0,10,.1));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:8px;}
+.post-caption{font-size:.62rem;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:8px;}
+.post-stats{display:flex;gap:10px;}
+.ps{font-size:.62rem;color:rgba(255,255,255,.35);}
+.ps span{color:var(--red2);font-weight:700;}
+.growth-row{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.05);}
+.g-metric{text-align:center;}
+.g-val{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.g-lbl{font-size:.55rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;}
+
+section{padding:80px 5vw;position:relative;}
+.section-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.35rem 1rem;border-radius:3px;margin-bottom:1.2rem;color:rgba(255,100,100,.95);}
+.section-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red2);box-shadow:0 0 6px var(--red2);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.12;margin-bottom:1rem;}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.78;max-width:560px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.feat-card:hover::before{transform:scaleX(1);}
+.feat-card:hover{transform:translateY(-5px);border-color:rgba(232,0,30,.35);box-shadow:0 20px 50px rgba(232,0,30,.12);}
+.feat-icon{font-size:2rem;margin-bottom:1rem;}
+.feat-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.feat-desc{font-size:.86rem;color:var(--muted);line-height:1.7;}
+.platforms-section{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;}
+.platform-card{border-radius:14px;padding:2rem;text-align:center;transition:transform .3s,box-shadow .3s;}
+.platform-card:hover{transform:translateY(-5px);}
+.pc-insta{background:linear-gradient(135deg,rgba(131,58,180,.12),rgba(253,29,29,.12),rgba(252,176,69,.08));border:1px solid rgba(131,58,180,.3);}
+.pc-fb{background:rgba(24,119,242,.08);border:1px solid rgba(24,119,242,.25);}
+.pc-li{background:rgba(0,119,181,.08);border:1px solid rgba(0,119,181,.25);}
+.pc-icon{font-size:2.5rem;margin-bottom:.8rem;display:block;}
+.pc-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+.pc-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+.cta-strip{background:var(--accent-grad);border-radius:16px;padding:3rem 2rem;text-align:center;margin:0 5vw 80px;box-shadow:0 20px 60px rgba(232,0,30,.35);}
+.cta-strip h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.8rem;}
+.cta-strip p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:1.8rem;}
+.btn-white{background:#fff;color:var(--red);border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:800;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:transform .2s;}
+.btn-white:hover{transform:translateY(-2px);}
+.svc-footer{background:#050305;border-top:1px solid rgba(232,0,30,.1);padding:30px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.svc-footer span{font-size:.82rem;color:rgba(255,255,255,.3);}
+.svc-footer a{color:rgba(255,120,120,.7);text-decoration:none;font-size:.82rem;}
+.svc-footer a:hover{color:#fff;}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.glow-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.5),rgba(255,80,80,.4),transparent);}
+@media(max-width:768px){.svc-hero{grid-template-columns:1fr;}.social-mockup{display:none;}.platforms-section{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page-bg"><div class="grid-lines"></div></div>
+<nav>
+  <a href="index.html" class="logo-nav">Clickora</a>
+  <a href="index.html#services" class="nav-back">← Back to Services</a>
+  <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<div class="svc-hero">
+  <div style="position:relative;z-index:2;">
+    <div class="svc-tag"><span class="dot"></span> Our Service</div>
+    <h1>Social Media That<br><span>Builds Your Brand</span></h1>
+    <p>We manage your Instagram, Facebook, and LinkedIn — creating thumb-stopping content, running targeted ads, and building a loyal community that converts followers into customers.</p>
+    <a href="index.html#contact" class="btn-primary">Grow My Brand →</a>
+  </div>
+  <div style="position:relative;z-index:2;display:flex;justify-content:center;">
+    <div class="social-mockup">
+      <div class="platform-tabs">
+        <div class="p-tab insta">Instagram</div>
+        <div class="p-tab fb">Facebook</div>
+        <div class="p-tab li">LinkedIn</div>
+      </div>
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar">C</div>
+          <div><div class="post-name">clickorawebsolutions</div><div class="post-time">2 hours ago</div></div>
+        </div>
+        <div class="post-img">🌐</div>
+        <div class="post-caption">Your website is your 24/7 salesperson. Let's make it work harder! 💻🚀 #WebDesign #Chennai</div>
+        <div class="post-stats">
+          <div class="ps">❤️ <span>2.4K</span></div>
+          <div class="ps">💬 <span>148</span></div>
+          <div class="ps">🔗 <span>89</span> shares</div>
+        </div>
+      </div>
+      <div class="growth-row">
+        <div class="g-metric"><div class="g-val">+38%</div><div class="g-lbl">Reach</div></div>
+        <div class="g-metric"><div class="g-val">12K</div><div class="g-lbl">New Followers</div></div>
+        <div class="g-metric"><div class="g-val">4.6%</div><div class="g-lbl">Engagement</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="glow-divider"></div>
+
+<section style="background:rgba(255,255,255,.015);">
+  <div class="fade-up">
+    <span class="section-tag">Platforms We Manage</span>
+    <h2 class="section-title">Your Brand, Everywhere</h2>
+    <p class="section-sub">We manage your presence across the platforms that matter most for your audience and industry.</p>
+  </div>
+  <div class="platforms-section fade-up">
+    <div class="platform-card pc-insta"><span class="pc-icon">📸</span><div class="pc-name">Instagram</div><div class="pc-desc">Reels, carousels, stories & ads. Perfect for B2C brands, restaurants, fashion, and local businesses wanting visual reach.</div></div>
+    <div class="platform-card pc-fb"><span class="pc-icon">📘</span><div class="pc-name">Facebook</div><div class="pc-desc">Page management, targeted ads, events, and groups. Ideal for reaching all age groups and running retargeting campaigns.</div></div>
+    <div class="platform-card pc-li"><span class="pc-icon">💼</span><div class="pc-name">LinkedIn</div><div class="pc-desc">B2B lead generation, thought leadership content, and company page growth to position you as an industry expert.</div></div>
+  </div>
+</section>
+<div class="glow-divider"></div>
+
+<section>
+  <div class="fade-up">
+    <span class="section-tag">What We Deliver</span>
+    <h2 class="section-title">Full Social Media Management</h2>
+    <p class="section-sub">Everything you need to build a powerful, consistent brand presence across social platforms.</p>
+  </div>
+  <div class="features-grid fade-up">
+    <div class="feat-card"><div class="feat-icon">🎨</div><div class="feat-title">Content Creation</div><div class="feat-desc">Custom designed posts, reels, stories, and carousels — professionally crafted to match your brand identity.</div></div>
+    <div class="feat-card"><div class="feat-icon">📅</div><div class="feat-title">Content Calendar</div><div class="feat-desc">Planned, scheduled posting strategy with the right mix of promotional, educational, and engaging content.</div></div>
+    <div class="feat-card"><div class="feat-icon">🎯</div><div class="feat-title">Paid Social Ads</div><div class="feat-desc">Highly targeted Facebook and Instagram ads that reach your exact customer demographic in Chennai and India.</div></div>
+    <div class="feat-card"><div class="feat-icon">💬</div><div class="feat-title">Community Management</div><div class="feat-desc">We respond to comments and DMs, keeping your audience engaged and your brand reputation strong.</div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Monthly Analytics Report</div><div class="feat-desc">Reach, engagement, follower growth, and ad performance — all clearly summarized every month.</div></div>
+    <div class="feat-card"><div class="feat-icon">📱</div><div class="feat-title">Reels & Video Content</div><div class="feat-desc">Short-form video content optimized for Instagram and Facebook Reels to maximize organic reach.</div></div>
+  </div>
+</section>
+
+<div class="cta-strip fade-up">
+  <h2>Ready to Grow Your Social Presence?</h2>
+  <p>Free social media audit — we'll show you exactly what's missing and how to fix it.</p>
+  <a href="index.html#contact" class="btn-white">Get Free Audit →</a>
+</div>
+
+<div class="svc-footer">
+  <span>© 2025 Clickora Web Solution · Chennai</span>
+  <a href="index.html">← Back to Home</a>
+</div>
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

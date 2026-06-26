@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC & Support – Clickora Web Solution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--red:#e8001e;--red2:#ff1a35;--accent-grad:linear-gradient(135deg,#e8001e 0%,#ff4d4d 100%);--text-grad:linear-gradient(135deg,#ff6b6b 0%,#ff1a35 50%,#ff8c8c 100%);--deep:#080608;--white:#fff;--muted:rgba(255,255,255,0.5);--border:rgba(255,255,255,0.08);--card:rgba(255,255,255,0.03);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--white);overflow-x:hidden;}
+
+/* BG */
+.page-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 20% 20%,rgba(232,0,30,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(140,0,10,0.12) 0%,transparent 50%),#080608;}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(232,0,30,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,30,0.04) 1px,transparent 1px);background-size:80px 80px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,6,8,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(232,0,30,0.15);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo-nav{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
+.nav-back:hover{color:var(--white);}
+.nav-cta{background:var(--accent-grad);color:#fff;border:none;padding:.55rem 1.4rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+
+/* HERO */
+.svc-hero{min-height:72vh;padding:120px 5vw 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;background:linear-gradient(135deg,rgba(8,6,8,0.85) 0%,rgba(20,4,4,0.8) 100%),url('https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1800&q=80') center/cover no-repeat;}
+.svc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(232,0,30,0.2) 0%,transparent 65%);}
+.svc-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);border-radius:3px;padding:.4rem 1.1rem;font-size:.72rem;font-weight:700;color:rgba(255,120,120,.9);margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:.1em;}
+.svc-tag .dot{width:6px;height:6px;background:var(--red2);border-radius:50%;animation:pulse 1.5s infinite;box-shadow:0 0 8px var(--red2);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.svc-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em;}
+.svc-hero h1 span{background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.svc-hero p{font-size:1.05rem;color:var(--muted);line-height:1.78;max-width:480px;margin-bottom:2rem;}
+.btn-primary{background:var(--accent-grad);color:#fff;border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 6px 28px rgba(232,0,30,.4);transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,0,30,.55);}
+
+/* HERO VISUAL — AMC Dashboard Mockup */
+.hero-visual-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
+.amc-mockup{background:rgba(18,8,8,0.92);border:1px solid rgba(232,0,30,0.2);border-radius:12px;padding:20px;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(232,0,30,.1);animation:float-up 6s ease-in-out infinite;max-width:340px;width:100%;}
+@keyframes float-up{0%,100%{transform:translateY(0) rotateY(-8deg)}50%{transform:translateY(-12px) rotateY(-8deg)}}
+.mockup-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.mockup-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.status-badge{background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);border-radius:20px;padding:4px 10px;font-size:.68rem;font-weight:700;color:#00e676;}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;}
+.stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px;text-align:center;}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--red2);}
+.stat-lbl{font-size:.58rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+.ticket-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.ticket{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:8px 10px;}
+.ticket-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.t-open{background:#00e676;box-shadow:0 0 6px #00e676;}
+.t-prog{background:#ff9800;box-shadow:0 0 6px #ff9800;}
+.t-done{background:#666;}
+.ticket-text{font-size:.65rem;color:rgba(255,255,255,.7);flex:1;}
+.ticket-time{font-size:.58rem;color:var(--muted);}
+.uptime-bar-wrap{margin-top:4px;}
+.uptime-lbl{display:flex;justify-content:space-between;font-size:.62rem;color:var(--muted);margin-bottom:5px;}
+.uptime-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;}
+.uptime-fill{height:100%;width:99%;background:linear-gradient(90deg,#00e676,#00c853);border-radius:3px;}
+.badge-response{position:absolute;bottom:-16px;left:-20px;background:rgba(12,4,4,.95);border:1px solid rgba(255,152,0,.3);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.badge-response .gi{color:#ff9800;}
+
+/* CONTENT SECTIONS */
+section{padding:80px 5vw;position:relative;}
+.section-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.35rem 1rem;border-radius:3px;margin-bottom:1.2rem;color:rgba(255,100,100,.95);}
+.section-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red2);box-shadow:0 0 6px var(--red2);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.12;margin-bottom:1rem;color:var(--white);}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.78;max-width:560px;}
+
+/* FEATURES GRID */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.feat-card:hover::before{transform:scaleX(1);}
+.feat-card:hover{transform:translateY(-5px);border-color:rgba(232,0,30,.35);box-shadow:0 20px 50px rgba(232,0,30,.12);}
+.feat-icon{font-size:2rem;margin-bottom:1rem;}
+.feat-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.feat-desc{font-size:.86rem;color:var(--muted);line-height:1.7;}
+
+/* PLANS GRID */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:3rem;}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.2rem;position:relative;transition:transform .3s,border-color .3s,box-shadow .3s;}
+.plan-card.popular{border-color:rgba(232,0,30,.5);background:rgba(232,0,30,.05);}
+.plan-card.popular::after{content:'MOST POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent-grad);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.1em;padding:.3rem 1rem;border-radius:20px;}
+.plan-card:hover{transform:translateY(-5px);border-color:rgba(232,0,30,.4);box-shadow:0 20px 50px rgba(232,0,30,.12);}
+.plan-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;}
+.plan-price{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.3rem;}
+.plan-cycle{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem;}
+.plan-features li{font-size:.84rem;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:8px;}
+.plan-features li::before{content:'✓';color:#00e676;font-weight:800;font-size:.78rem;flex-shrink:0;}
+.plan-btn{display:block;text-align:center;background:var(--accent-grad);color:#fff;text-decoration:none;padding:.75rem 1.5rem;border-radius:4px;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:transform .2s,box-shadow .2s;}
+.plan-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,0,30,.4);}
+.plan-btn.outline{background:transparent;border:1px solid rgba(232,0,30,.4);color:rgba(255,130,130,.9);clip-path:none;border-radius:4px;}
+.plan-btn.outline:hover{border-color:var(--red2);box-shadow:0 6px 20px rgba(232,0,30,.2);}
+
+/* PROCESS */
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;margin-top:3rem;position:relative;}
+.process-steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.4),transparent);pointer-events:none;}
+.step{text-align:center;padding:0 1rem;}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin:0 auto 1rem;box-shadow:0 0 30px rgba(232,0,30,.4);}
+.step-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+
+/* SLA ROW */
+.sla-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:3rem;}
+.sla-box{background:linear-gradient(135deg,rgba(232,0,30,0.08),rgba(232,0,30,0.03));border:1px solid rgba(232,0,30,.2);border-radius:12px;padding:1.8rem;text-align:center;}
+.sla-val{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem;}
+.sla-label{font-size:.8rem;color:var(--muted);font-weight:600;}
+
+/* CTA STRIP */
+.cta-strip{background:var(--accent-grad);border-radius:16px;padding:3rem 2rem;text-align:center;margin:0 5vw 80px;box-shadow:0 20px 60px rgba(232,0,30,.35);}
+.cta-strip h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.8rem;}
+.cta-strip p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:1.8rem;}
+.btn-white{background:#fff;color:var(--red);border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:transform .2s,box-shadow .2s;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.3);}
+
+/* FOOTER */
+.svc-footer{background:#050305;border-top:1px solid rgba(232,0,30,.1);padding:30px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.svc-footer span{font-size:.82rem;color:rgba(255,255,255,.3);}
+.svc-footer a{color:rgba(255,120,120,.7);text-decoration:none;font-size:.82rem;}
+.svc-footer a:hover{color:#fff;}
+
+/* FADE IN */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+.glow-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.5),rgba(255,80,80,.4),transparent);}
+
+@media(max-width:768px){
+  .svc-hero{grid-template-columns:1fr;padding:120px 5vw 60px;}
+  .hero-visual-wrap{display:none;}
+  .process-steps::before{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="page-bg"><div class="grid-lines"></div></div>
+
+<nav>
+  <a href="index.html" class="logo-nav">Clickora</a>
+  <a href="index.html#services" class="nav-back">← Back to Services</a>
+  <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<div class="svc-hero">
+  <div style="position:relative;z-index:2;">
+    <div class="svc-tag"><span class="dot"></span> Our Service</div>
+    <h1>AMC &amp;<br><span>Website Support</span></h1>
+    <p>Keep your website secure, fast, and always online. Our Annual Maintenance Contract covers everything — bug fixes, updates, backups, and priority support — so you never have to worry.</p>
+    <a href="index.html#contact" class="btn-primary">Get Your AMC Plan →</a>
+  </div>
+  <div class="hero-visual-wrap" style="position:relative;z-index:2;">
+    <div class="amc-mockup">
+      <div class="mockup-header">
+        <div class="mockup-title">🛡️ Site Dashboard</div>
+        <div class="status-badge">● All Systems Live</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-val">99%</div><div class="stat-lbl">Uptime</div></div>
+        <div class="stat-box"><div class="stat-val">4h</div><div class="stat-lbl">Response</div></div>
+        <div class="stat-box"><div class="stat-val">24/7</div><div class="stat-lbl">Monitor</div></div>
+      </div>
+      <div class="ticket-list">
+        <div class="ticket"><span class="ticket-dot t-done"></span><span class="ticket-text">SSL Certificate renewed</span><span class="ticket-time">Done</span></div>
+        <div class="ticket"><span class="ticket-dot t-prog"></span><span class="ticket-text">Plugin update — v4.2.1</span><span class="ticket-time">In Progress</span></div>
+        <div class="ticket"><span class="ticket-dot t-open"></span><span class="ticket-text">Speed optimization scheduled</span><span class="ticket-time">Open</span></div>
+      </div>
+      <div class="uptime-bar-wrap">
+        <div class="uptime-lbl"><span>Uptime this month</span><span style="color:#00e676;font-weight:700;">99.97%</span></div>
+        <div class="uptime-bar"><div class="uptime-fill"></div></div>
+      </div>
+    </div>
+    <div class="badge-response"><span class="gi">⚡</span> Avg Response: Under 4 Hrs</div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- WHAT'S INCLUDED -->
+<section>
+  <div class="fade-up">
+    <span class="section-tag">What's Included</span>
+    <h2 class="section-title">Complete Website Care, All Year Round</h2>
+    <p class="section-sub">From routine maintenance to emergency fixes — your website stays healthy, updated, and performing at its best.</p>
+  </div>
+  <div class="features-grid fade-up">
+    <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">Security Monitoring</div><div class="feat-desc">24/7 malware scanning, firewall management, and threat detection to keep your site and customer data safe.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">CMS &amp; Plugin Updates</div><div class="feat-desc">Regular WordPress, theme, and plugin updates with compatibility checks — no broken pages, ever.</div></div>
+    <div class="feat-card"><div class="feat-icon">💾</div><div class="feat-title">Daily Cloud Backups</div><div class="feat-desc">Automated daily backups stored securely off-site. One-click restore if anything goes wrong.</div></div>
+    <div class="feat-card"><div class="feat-icon">🐞</div><div class="feat-title">Bug Fixes &amp; Tweaks</div><div class="feat-desc">Minor content changes, layout fixes, and bug resolution handled within your SLA window — no extra charges.</div></div>
+    <div class="feat-card"><div class="feat-icon">🚀</div><div class="feat-title">Performance Tuning</div><div class="feat-desc">Page speed audits, image compression, caching setup, and Core Web Vitals optimization every quarter.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔒</div><div class="feat-title">SSL Management</div><div class="feat-desc">We monitor, renew, and configure your SSL certificate so your site never shows a "Not Secure" warning.</div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Monthly Reports</div><div class="feat-desc">Clear monthly reports on uptime, tasks completed, security status, and performance scores — delivered to your inbox.</div></div>
+    <div class="feat-card"><div class="feat-icon">📞</div><div class="feat-title">Priority Support</div><div class="feat-desc">Dedicated support via WhatsApp, email, or call. AMC clients jump the queue — critical issues resolved within 4 hours.</div></div>
+    <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title">Domain &amp; Hosting Renewal</div><div class="feat-desc">We track and remind you of renewals — and handle them on your behalf so your site never goes offline unexpectedly.</div></div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- SLA NUMBERS -->
+<section style="background:rgba(255,255,255,.015);">
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">Our Commitment</span>
+    <h2 class="section-title">Response Times You Can Count On</h2>
+    <p class="section-sub" style="margin:0 auto;">Every AMC plan comes with guaranteed response times and a dedicated support contact.</p>
+  </div>
+  <div class="sla-row fade-up">
+    <div class="sla-box"><div class="sla-val">4 hrs</div><div class="sla-label">Critical Issue Response</div></div>
+    <div class="sla-box"><div class="sla-val">24 hrs</div><div class="sla-label">Bug Fix Turnaround</div></div>
+    <div class="sla-box"><div class="sla-val">99.9%</div><div class="sla-label">Uptime Guarantee</div></div>
+    <div class="sla-box"><div class="sla-val">Daily</div><div class="sla-label">Backup Frequency</div></div>
+    <div class="sla-box"><div class="sla-val">12 mo</div><div class="sla-label">Contract Duration</div></div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">How It Works</span>
+    <h2 class="section-title">Signing Up Is Simple</h2>
+  </div>
+  <div class="process-steps fade-up">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Audit Call</div><div class="step-desc">We review your current site health, hosting, and pain points — free of charge.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Plan Selection</div><div class="step-desc">Choose the AMC plan that fits your site's size and business needs.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Onboarding</div><div class="step-desc">We get access, run a full site audit, and set up monitoring within 24 hours.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Ongoing Care</div><div class="step-desc">Monthly maintenance, regular updates, and instant support whenever you need it.</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-title">Monthly Report</div><div class="step-desc">You receive a clear report every month. Full visibility, zero guesswork.</div></div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- PRICING PLANS -->
+<section style="background:rgba(255,255,255,.015);">
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">Pricing</span>
+    <h2 class="section-title">AMC Plans for Every Business</h2>
+    <p class="section-sub" style="margin:0 auto;">Simple annual pricing. No hidden charges. Cancel-free renewals.</p>
+  </div>
+  <div class="plans-grid fade-up">
+    <!-- Basic -->
+    <div class="plan-card">
+      <div class="plan-name">Basic</div>
+      <div class="plan-price">₹4,999</div>
+      <div class="plan-cycle">per year · billed annually</div>
+      <ul class="plan-features">
+        <li>Monthly plugin &amp; CMS updates</li>
+        <li>Weekly cloud backups</li>
+        <li>SSL monitoring &amp; renewal alert</li>
+        <li>Security scanning (monthly)</li>
+        <li>Email support · 24 hr response</li>
+        <li>Basic monthly report</li>
+      </ul>
+      <a href="index.html#contact" class="plan-btn outline">Get Started →</a>
+    </div>
+    <!-- Standard -->
+    <div class="plan-card popular">
+      <div class="plan-name">Standard</div>
+      <div class="plan-price">₹8,999</div>
+      <div class="plan-cycle">per year · billed annually</div>
+      <ul class="plan-features">
+        <li>Weekly plugin &amp; CMS updates</li>
+        <li>Daily cloud backups</li>
+        <li>SSL managed &amp; auto-renewed</li>
+        <li>Security scanning (weekly)</li>
+        <li>Bug fixes &amp; minor tweaks</li>
+        <li>WhatsApp + Email support · 8 hr response</li>
+        <li>Performance audit (quarterly)</li>
+        <li>Detailed monthly report</li>
+      </ul>
+      <a href="index.html#contact" class="plan-btn">Get Started →</a>
+    </div>
+    <!-- Premium -->
+    <div class="plan-card">
+      <div class="plan-name">Premium</div>
+      <div class="plan-price">₹14,999</div>
+      <div class="plan-cycle">per year · billed annually</div>
+      <ul class="plan-features">
+        <li>Everything in Standard</li>
+        <li>24/7 uptime monitoring</li>
+        <li>Priority 4 hr response SLA</li>
+        <li>Daily security scanning + firewall</li>
+        <li>Unlimited minor content changes</li>
+        <li>Quarterly performance tuning</li>
+        <li>Domain &amp; hosting renewal handled</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <a href="index.html#contact" class="plan-btn outline">Get Started →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip fade-up">
+  <h2>Your Website Deserves Year-Round Care</h2>
+  <p>Get peace of mind with a plan that handles everything. Free consultation — no commitment needed.</p>
+  <a href="index.html#contact" class="btn-white">Talk to Us →</a>
+</div>
+
+<div class="svc-footer">
+  <span>© 2025 Clickora Web Solution · Chennai</span>
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

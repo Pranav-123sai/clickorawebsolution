@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Design & Development – Clickora Web Solution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --red:#e8001e;--red2:#ff1a35;
+  --accent-grad:linear-gradient(135deg,#e8001e 0%,#ff4d4d 100%);
+  --text-grad:linear-gradient(135deg,#ff6b6b 0%,#ff1a35 50%,#ff8c8c 100%);
+  --deep:#080608;--white:#fff;
+  --muted:rgba(255,255,255,0.5);
+  --border:rgba(255,255,255,0.08);
+  --card:rgba(255,255,255,0.03);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--white);overflow-x:hidden;}
+
+/* BG */
+.page-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 20% 20%,rgba(232,0,30,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(140,0,10,0.12) 0%,transparent 50%),#080608;}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(232,0,30,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,30,0.04) 1px,transparent 1px);background-size:80px 80px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,6,8,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(232,0,30,0.15);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo-nav{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
+.nav-back:hover{color:var(--white);}
+.nav-cta{background:var(--accent-grad);color:#fff;border:none;padding:.55rem 1.4rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+
+/* HERO */
+.svc-hero{min-height:72vh;padding:120px 5vw 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;background:linear-gradient(135deg,rgba(8,6,8,0.88) 0%,rgba(20,4,4,0.82) 100%),url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1800&q=80') center/cover no-repeat;}
+.svc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(232,0,30,0.18) 0%,transparent 65%);}
+.svc-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);border-radius:3px;padding:.4rem 1.1rem;font-size:.72rem;font-weight:700;color:rgba(255,120,120,.9);margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:.1em;}
+.svc-tag .dot{width:6px;height:6px;background:var(--red2);border-radius:50%;animation:pulse 1.5s infinite;box-shadow:0 0 8px var(--red2);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.svc-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em;}
+.svc-hero h1 span{background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.svc-hero p{font-size:1.05rem;color:var(--muted);line-height:1.78;max-width:480px;margin-bottom:2rem;}
+.btn-primary{background:var(--accent-grad);color:#fff;border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 6px 28px rgba(232,0,30,.4);transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,0,30,.55);}
+
+/* HERO VISUAL — Browser Mockup */
+.hero-visual-wrap{position:relative;display:flex;justify-content:center;align-items:center;}
+.browser-mockup{background:rgba(14,6,6,0.94);border:1px solid rgba(232,0,30,0.22);border-radius:12px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(232,0,30,.1);animation:float-up 6s ease-in-out infinite;max-width:360px;width:100%;}
+@keyframes float-up{0%,100%{transform:translateY(0) rotateY(-8deg)}50%{transform:translateY(-12px) rotateY(-8deg)}}
+.browser-bar{background:rgba(255,255,255,.05);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);}
+.b-dots{display:flex;gap:5px;}
+.b-dot{width:9px;height:9px;border-radius:50%;}
+.b-dot.r{background:#e8001e;}
+.b-dot.y{background:#ffaa00;}
+.b-dot.g{background:#00e676;}
+.b-url{flex:1;background:rgba(255,255,255,.06);border-radius:4px;padding:4px 10px;font-size:.65rem;color:rgba(255,255,255,.4);font-family:monospace;}
+.browser-screen{padding:16px;}
+.site-nav-mini{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.mini-logo{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:800;color:#ff6b6b;}
+.mini-links{display:flex;gap:8px;}
+.mini-link{font-size:.55rem;color:rgba(255,255,255,.4);padding:3px 7px;border-radius:3px;background:rgba(255,255,255,.04);}
+.mini-hero{background:linear-gradient(135deg,rgba(232,0,30,.12),rgba(120,0,10,.08));border:1px solid rgba(232,0,30,.15);border-radius:8px;padding:18px 14px;margin-bottom:12px;text-align:center;}
+.mini-h{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;color:#fff;margin-bottom:5px;}
+.mini-sub{font-size:.58rem;color:rgba(255,255,255,.45);margin-bottom:10px;line-height:1.5;}
+.mini-btn{background:var(--accent-grad);color:#fff;border:none;border-radius:3px;padding:5px 14px;font-size:.6rem;font-weight:700;cursor:pointer;}
+.mini-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.mini-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:8px 6px;text-align:center;}
+.mc-icon{font-size:.95rem;margin-bottom:3px;}
+.mc-txt{font-size:.52rem;color:rgba(255,255,255,.4);}
+.badge-live{position:absolute;bottom:-16px;left:-24px;background:rgba(8,4,4,.95);border:1px solid rgba(0,230,118,.3);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.badge-live .gi{color:#00e676;}
+
+/* CONTENT */
+section{padding:80px 5vw;position:relative;}
+.section-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,0,30,0.1);border:1px solid rgba(232,0,30,0.3);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.35rem 1rem;border-radius:3px;margin-bottom:1.2rem;color:rgba(255,100,100,.95);}
+.section-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red2);box-shadow:0 0 6px var(--red2);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.12;margin-bottom:1rem;color:var(--white);}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.78;max-width:560px;}
+
+/* FEATURES GRID */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.feat-card:hover::before{transform:scaleX(1);}
+.feat-card:hover{transform:translateY(-5px);border-color:rgba(232,0,30,.35);box-shadow:0 20px 50px rgba(232,0,30,.12);}
+.feat-icon{font-size:2rem;margin-bottom:1rem;}
+.feat-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.feat-desc{font-size:.86rem;color:var(--muted);line-height:1.7;}
+
+/* PROCESS */
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:3rem;position:relative;}
+.process-steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.4),transparent);pointer-events:none;}
+.step{text-align:center;padding:0 1rem;}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin:0 auto 1rem;box-shadow:0 0 30px rgba(232,0,30,.4);}
+.step-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+
+/* ── OUR WORK / PROJECTS ── */
+.projects-section{padding:80px 5vw;}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.6rem;margin-top:3rem;}
+
+.project-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s;position:relative;}
+.project-card:hover{transform:translateY(-8px);border-color:rgba(232,0,30,.4);box-shadow:0 30px 70px rgba(232,0,30,.15);}
+
+/* Featured card accent */
+.project-card.featured{border-color:rgba(232,0,30,.3);box-shadow:0 0 40px rgba(232,0,30,.08);}
+.project-card.featured::after{content:'FEATURED PROJECT';position:absolute;top:16px;right:16px;background:var(--accent-grad);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.12em;padding:.25rem .8rem;border-radius:3px;z-index:3;}
+
+.project-preview{position:relative;height:200px;overflow:hidden;background:#0e0608;}
+.project-preview-inner{position:absolute;inset:0;display:flex;flex-direction:column;padding:16px;}
+
+/* suplydecors site preview */
+.sd-topbar{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:6px 6px 0 0;padding:8px 12px;border:1px solid rgba(255,255,255,.07);border-bottom:none;}
+.sd-logo{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:800;color:#c9a96e;letter-spacing:.04em;}
+.sd-nav{display:flex;gap:7px;}
+.sd-nav span{font-size:.5rem;color:rgba(255,255,255,.4);padding:2px 6px;background:rgba(255,255,255,.04);border-radius:2px;}
+.sd-hero-block{flex:1;background:linear-gradient(135deg,rgba(15,10,5,.95),rgba(30,18,6,.9));border:1px solid rgba(201,169,110,.12);border-top:none;border-radius:0 0 6px 6px;padding:14px 12px;display:flex;gap:10px;align-items:center;}
+.sd-text-col{flex:1;}
+.sd-tag{font-size:.48rem;color:#c9a96e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.8;}
+.sd-heading{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:5px;}
+.sd-sub{font-size:.5rem;color:rgba(255,255,255,.38);line-height:1.5;margin-bottom:8px;}
+.sd-cta{display:inline-block;background:linear-gradient(135deg,#c9a96e,#a07840);color:#fff;font-size:.5rem;font-weight:700;padding:4px 10px;border-radius:2px;letter-spacing:.06em;}
+.sd-img-col{width:56px;height:56px;border-radius:6px;background:linear-gradient(135deg,rgba(201,169,110,.2),rgba(120,80,20,.3));border:1px solid rgba(201,169,110,.2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
+.sd-stats{display:flex;gap:6px;margin-top:8px;}
+.sd-stat{background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.15);border-radius:3px;padding:3px 7px;font-size:.47rem;color:rgba(201,169,110,.85);font-weight:600;}
+
+/* project meta */
+.project-meta{padding:1.4rem 1.6rem;}
+.project-type{display:inline-flex;align-items:center;gap:5px;font-size:.65rem;font-weight:700;color:rgba(255,100,100,.85);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;}
+.project-type::before{content:'';width:5px;height:5px;background:var(--red2);border-radius:50%;box-shadow:0 0 5px var(--red2);}
+.project-name{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:.4rem;}
+.project-desc{font-size:.84rem;color:var(--muted);line-height:1.68;margin-bottom:1rem;}
+.project-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.1rem;}
+.ptag{background:rgba(232,0,30,.07);border:1px solid rgba(232,0,30,.18);border-radius:20px;padding:.2rem .75rem;font-size:.68rem;color:rgba(255,140,140,.85);font-weight:600;}
+.project-link{display:inline-flex;align-items:center;gap:6px;color:var(--red2);font-size:.82rem;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(232,0,30,.25);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.project-link:hover{color:#fff;border-color:rgba(255,255,255,.3);}
+
+/* Placeholder cards for other projects */
+.ph-preview{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(255,255,255,.02);}
+.ph-icon{font-size:2.4rem;opacity:.35;}
+.ph-label{font-size:.68rem;color:rgba(255,255,255,.2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(232,0,30,.1);border:1px solid rgba(232,0,30,.1);border-radius:12px;overflow:hidden;margin-top:4rem;}
+.stat-cell{background:var(--deep);padding:2rem;text-align:center;}
+.stat-big{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-lbl{font-size:.8rem;color:var(--muted);margin-top:.2rem;}
+
+/* PRICING */
+.price-highlight{background:linear-gradient(135deg,rgba(232,0,30,0.08),rgba(232,0,30,0.03));border:1px solid rgba(232,0,30,.25);border-radius:16px;padding:3rem;text-align:center;margin-top:3rem;}
+.price-highlight h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+.price-big{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;background:var(--text-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:.5rem 0;}
+.price-note{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem;}
+.features-list{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-bottom:2rem;}
+.fl-item{background:rgba(232,0,30,.08);border:1px solid rgba(232,0,30,.2);border-radius:20px;padding:.3rem 1rem;font-size:.78rem;color:rgba(255,150,150,.9);font-weight:600;}
+
+/* CTA STRIP */
+.cta-strip{background:var(--accent-grad);border-radius:16px;padding:3rem 2rem;text-align:center;margin:0 5vw 80px;box-shadow:0 20px 60px rgba(232,0,30,.35);}
+.cta-strip h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.8rem;}
+.cta-strip p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:1.8rem;}
+.btn-white{background:#fff;color:var(--red);border:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.92rem;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:transform .2s,box-shadow .2s;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.3);}
+
+/* FOOTER */
+.svc-footer{background:#050305;border-top:1px solid rgba(232,0,30,.1);padding:30px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.svc-footer span{font-size:.82rem;color:rgba(255,255,255,.3);}
+.svc-footer a{color:rgba(255,120,120,.7);text-decoration:none;font-size:.82rem;}
+.svc-footer a:hover{color:#fff;}
+
+/* FADE IN */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.glow-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,30,.5),rgba(255,80,80,.4),transparent);}
+
+@media(max-width:768px){
+  .svc-hero{grid-template-columns:1fr;padding:120px 5vw 60px;}
+  .hero-visual-wrap{display:none;}
+  .process-steps::before{display:none;}
+  .projects-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="page-bg"><div class="grid-lines"></div></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo-nav">Clickora</a>
+  <a href="index.html#services" class="nav-back">← Back to Services</a>
+  <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<div class="svc-hero">
+  <div style="position:relative;z-index:2;">
+    <div class="svc-tag"><span class="dot"></span> Our Service</div>
+    <h1>Website Design<br><span>&amp; Development</span></h1>
+    <p>We craft fast, beautiful, conversion-focused websites that make your brand unforgettable. From landing pages to full business portals — clean code, stunning design, zero compromise.</p>
+    <a href="index.html#contact" class="btn-primary">Start Your Project →</a>
+  </div>
+  <div class="hero-visual-wrap" style="position:relative;z-index:2;">
+    <div class="browser-mockup">
+      <div class="browser-bar">
+        <div class="b-dots">
+          <div class="b-dot r"></div>
+          <div class="b-dot y"></div>
+          <div class="b-dot g"></div>
+        </div>
+        <div class="b-url">sspplydecors.com</div>
+      </div>
+      <div class="browser-screen">
+        <div class="site-nav-mini">
+          <span class="mini-logo">SSP Ply & Decors</span>
+          <div style="display:flex;gap:6px;">
+            <span style="font-size:.5rem;color:rgba(255,255,255,.3);padding:2px 5px;background:rgba(255,255,255,.04);border-radius:2px;">Home</span>
+            <span style="font-size:.5rem;color:rgba(255,255,255,.3);padding:2px 5px;background:rgba(255,255,255,.04);border-radius:2px;">Products</span>
+            <span style="font-size:.5rem;color:rgba(255,255,255,.3);padding:2px 5px;background:rgba(255,255,255,.04);border-radius:2px;">Contact</span>
+          </div>
+        </div>
+        <div class="sd-hero-block" style="flex:1;background:linear-gradient(135deg,rgba(15,10,5,.95),rgba(30,18,6,.9));border:1px solid rgba(201,169,110,.12);border-radius:6px;padding:14px 12px;display:flex;gap:10px;align-items:center;">
+          <div class="sd-text-col">
+            <div style="font-size:.48rem;color:#c9a96e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;">Premium Decors</div>
+            <div style="font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:5px;">Elevate Every<br>Space You Love</div>
+            <div style="font-size:.5rem;color:rgba(255,255,255,.38);line-height:1.5;margin-bottom:8px;">Curated home decor & supply solutions delivered to your door.</div>
+            <span style="display:inline-block;background:linear-gradient(135deg,#c9a96e,#a07840);color:#fff;font-size:.5rem;font-weight:700;padding:4px 10px;border-radius:2px;letter-spacing:.06em;">Shop Now</span>
+          </div>
+          <div style="width:56px;height:56px;border-radius:6px;background:linear-gradient(135deg,rgba(201,169,110,.2),rgba(120,80,20,.3));border:1px solid rgba(201,169,110,.2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🪴</div>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:9px;">
+          <div style="background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.15);border-radius:3px;padding:3px 7px;font-size:.47rem;color:rgba(201,169,110,.85);font-weight:600;">50+ Products</div>
+          <div style="background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.15);border-radius:3px;padding:3px 7px;font-size:.47rem;color:rgba(201,169,110,.85);font-weight:600;">Fast Delivery</div>
+          <div style="background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.15);border-radius:3px;padding:3px 7px;font-size:.47rem;color:rgba(201,169,110,.85);font-weight:600;">Secure Payment</div>
+        </div>
+      </div>
+    </div>
+    <div class="badge-live"><span class="gi">🟢</span> Live &amp; Ranking</div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- WHAT'S INCLUDED -->
+<section>
+  <div class="fade-up">
+    <span class="section-tag">What's Included</span>
+    <h2 class="section-title">Everything a Professional Website Needs</h2>
+    <p class="section-sub">We don't just build websites. We engineer digital experiences that attract visitors, hold their attention, and convert them into customers.</p>
+  </div>
+  <div class="features-grid fade-up">
+    <div class="feat-card"><div class="feat-icon">🎨</div><div class="feat-title">Custom UI / UX Design</div><div class="feat-desc">Pixel-perfect, brand-aligned designs — no templates. Every layout is crafted from scratch to match your identity and audience.</div></div>
+    <div class="feat-card"><div class="feat-icon">📱</div><div class="feat-title">Mobile-First & Responsive</div><div class="feat-desc">Looks stunning on every screen size — mobile, tablet, and desktop. Built mobile-first so your site works where your audience is.</div></div>
+    <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Speed-Optimized Code</div><div class="feat-desc">Lightweight, clean HTML/CSS/JS with compressed assets, lazy loading, and fast hosting for sub-2-second page loads.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔍</div><div class="feat-title">SEO Ready from Day One</div><div class="feat-desc">Proper semantic markup, meta tags, sitemap, robots.txt, and schema — so Google can find and rank you faster.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔒</div><div class="feat-title">SSL & Security</div><div class="feat-desc">HTTPS encryption, secure contact forms, spam protection, and best-practice hardening — trust badges included.</div></div>
+    <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title">Domain & Hosting Setup</div><div class="feat-desc">We handle domain registration, DNS, and hosting configuration so you don't deal with any technical headaches.</div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Analytics Integration</div><div class="feat-desc">Google Analytics, Search Console, and heatmap tools set up from day one so you know exactly how visitors behave.</div></div>
+    <div class="feat-card"><div class="feat-icon">✏️</div><div class="feat-title">Easy Content Management</div><div class="feat-desc">Update your text, images, and pages yourself with a simple admin panel — no developer needed for day-to-day edits.</div></div>
+    <div class="feat-card"><div class="feat-icon">📞</div><div class="feat-title">Lead Capture & CTA</div><div class="feat-desc">Contact forms, WhatsApp buttons, callback widgets, and newsletter opt-ins — every page built to collect leads.</div></div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- OUR WORK / PROJECTS -->
+<section class="projects-section">
+  <div class="fade-up">
+    <span class="section-tag">Our Work</span>
+    <h2 class="section-title">Projects We're Proud Of</h2>
+    <p class="section-sub">Real websites, real results. Here's a look at some of the brands we've built online — each one crafted with purpose and built to perform.</p>
+  </div>
+
+  <div class="projects-grid fade-up">
+
+    <!-- suplydecors.com — FEATURED -->
+    <div class="project-card featured">
+      <div class="project-preview">
+        <div class="project-preview-inner" style="background:linear-gradient(145deg,#0e0905,#1a0f04);">
+          <!-- mini site preview -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <span style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:800;color:#c9a96e;">SSP Ply & Decors</span>
+            <div style="display:flex;gap:5px;">
+              <span style="font-size:.48rem;color:rgba(255,255,255,.3);padding:2px 6px;background:rgba(255,255,255,.04);border-radius:2px;">Home</span>
+              <span style="font-size:.48rem;color:rgba(255,255,255,.3);padding:2px 6px;background:rgba(255,255,255,.04);border-radius:2px;">Shop</span>
+              <span style="font-size:.48rem;color:rgba(255,255,255,.3);padding:2px 6px;background:rgba(255,255,255,.04);border-radius:2px;">About</span>
+            </div>
+          </div>
+          <div style="background:linear-gradient(135deg,rgba(201,169,110,.1),rgba(100,60,10,.08));border:1px solid rgba(201,169,110,.15);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:center;flex:1;">
+            <div style="flex:1;">
+              <div style="font-size:.45rem;color:#c9a96e;text-transform:uppercase;letter-spacing:.12em;margin-bottom:3px;">Premium Supply</div>
+              <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:5px;">Beautiful Decors<br>for Every Home</div>
+              <div style="font-size:.48rem;color:rgba(255,255,255,.35);line-height:1.5;margin-bottom:8px;">Quality products, curated for your living space.</div>
+              <div style="display:flex;gap:5px;">
+                <span style="background:linear-gradient(135deg,#c9a96e,#a07840);color:#fff;font-size:.48rem;font-weight:700;padding:4px 9px;border-radius:2px;">Shop Now</span>
+                <span style="border:1px solid rgba(201,169,110,.4);color:rgba(201,169,110,.8);font-size:.48rem;font-weight:600;padding:4px 9px;border-radius:2px;">View Products</span>
+              </div>
+            </div>
+            <div style="width:52px;height:52px;border-radius:8px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🪴</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-top:8px;">
+            <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:5px;padding:6px 5px;text-align:center;">
+              <div style="font-size:.9rem;">🏺</div><div style="font-size:.44rem;color:rgba(255,255,255,.35);margin-top:2px;">Vases</div>
+            </div>
+            <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:5px;padding:6px 5px;text-align:center;">
+              <div style="font-size:.9rem;">🛋️</div><div style="font-size:.44rem;color:rgba(255,255,255,.35);margin-top:2px;">Furnish</div>
+            </div>
+            <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:5px;padding:6px 5px;text-align:center;">
+              <div style="font-size:.9rem;">🕯️</div><div style="font-size:.44rem;color:rgba(255,255,255,.35);margin-top:2px;">Lighting</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-type">eCommerce + Branding</div>
+        <div class="project-name">SSP Ply & Decors</div>
+        <div class="project-desc">A full-featured eCommerce website for a premium home decor & supply brand. Custom UI, product catalog, Razorpay integration, mobile-first design, and SEO-optimized structure — built to sell and scale.</div>
+        <div class="project-tags">
+          <span class="ptag">Custom Design</span>
+          <span class="ptag">eCommerce</span>
+          <span class="ptag">Razorpay</span>
+          <span class="ptag">Mobile-First</span>
+          <span class="ptag">SEO</span>
+        </div>
+        <a href="https://sspplydecors.com" target="_blank" class="project-link">Visit sspplydecors.com ↗</a>
+      </div>
+    </div>
+
+    <!-- Placeholder card 2 -->
+    <div class="project-card">
+      <div class="project-preview">
+        <div class="ph-preview">
+          <div class="ph-icon">🏗️</div>
+          <div class="ph-label">More Projects Coming Soon</div>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-type">Portfolio / Business</div>
+        <div class="project-name">Your Brand Here</div>
+        <div class="project-desc">We're always building something new. Whether it's a business website, portfolio, or online store — your project could be featured right here, live and ranking.</div>
+        <div class="project-tags">
+          <span class="ptag">Custom Website</span>
+          <span class="ptag">SEO</span>
+          <span class="ptag">Mobile-First</span>
+        </div>
+        <a href="index.html#contact" class="project-link">Start Your Project →</a>
+      </div>
+    </div>
+
+    <!-- Placeholder card 3 -->
+    <div class="project-card">
+      <div class="project-preview">
+        <div class="ph-preview">
+          <div class="ph-icon">🚀</div>
+          <div class="ph-label">Next Launch in Progress</div>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-type">Landing Page / SaaS</div>
+        <div class="project-name">Work in Progress</div>
+        <div class="project-desc">Our team is actively building high-performance websites for clients across India. Reach out and your site could be launching next — with our name behind it.</div>
+        <div class="project-tags">
+          <span class="ptag">Landing Page</span>
+          <span class="ptag">Speed Optimized</span>
+          <span class="ptag">Analytics</span>
+        </div>
+        <a href="index.html#contact" class="project-link">Talk to Us →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row fade-up">
+    <div class="stat-cell"><div class="stat-big">10+</div><div class="stat-lbl">Websites Launched</div></div>
+    <div class="stat-cell"><div class="stat-big">100%</div><div class="stat-lbl">Client Satisfaction</div></div>
+    <div class="stat-cell"><div class="stat-big">&lt;2s</div><div class="stat-lbl">Avg Load Time</div></div>
+    <div class="stat-cell"><div class="stat-big">5★</div><div class="stat-lbl">Average Rating</div></div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- PROCESS -->
+<section style="background:rgba(255,255,255,.015);">
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">Our Process</span>
+    <h2 class="section-title">How We Build Your Website</h2>
+  </div>
+  <div class="process-steps fade-up">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Discovery Call</div><div class="step-desc">We understand your business, goals, target audience, and what makes you different.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Design Mockup</div><div class="step-desc">We present a full visual design — you pay the remaining 50% only after approving it.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Development</div><div class="step-desc">We build the site with clean code, all features, integrations, and animations.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Review & Test</div><div class="step-desc">We test across all devices, browsers, and screen sizes before you see it.</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-title">Go Live!</div><div class="step-desc">Your website launches. We hand you the keys and make sure you know how to run it.</div></div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- PRICING -->
+<section>
+  <div class="fade-up" style="text-align:center;">
+    <span class="section-tag">Pricing</span>
+    <h2 class="section-title">Website Design Packages</h2>
+  </div>
+  <div class="price-highlight fade-up">
+    <h3>Professional Business Website</h3>
+    <div class="price-big">₹15,000+</div>
+    <div class="price-note">One-time · Annual renewal ₹3,000 · 50% upfront, 50% after design approval</div>
+    <div class="features-list">
+      <span class="fl-item">Custom Design</span>
+      <span class="fl-item">Up to 8 Pages</span>
+      <span class="fl-item">Mobile Responsive</span>
+      <span class="fl-item">SEO Optimized</span>
+      <span class="fl-item">SSL Certificate</span>
+      <span class="fl-item">Contact Form</span>
+      <span class="fl-item">Google Analytics</span>
+      <span class="fl-item">1 Year Support</span>
+      <span class="fl-item">Custom Domain</span>
+      <span class="fl-item">Speed Optimized</span>
+    </div>
+    <a href="index.html#contact" class="btn-primary">Get a Free Quote →</a>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip fade-up">
+  <h2>Ready to Get Online?</h2>
+  <p>Let's build a website your customers will love. Free consultation — no commitment needed.</p>
+  <a href="index.html#contact" class="btn-white">Talk to Us →</a>
+</div>
+
+<div class="svc-footer">
+  <span>© 2025 Clickora Web Solution · Chennai</span>
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
